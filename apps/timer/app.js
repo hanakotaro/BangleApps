@@ -1,14 +1,38 @@
 // タイマー設定
-let totalTime = 120;       // タイマーの設定（1周にかかる時間）。単位: 分__120分に設定（2時間）
-let outerRadius = 10;    // 外側の円の半径
+let totalTime = 120;       // タイマーの設定（1周にかかる時間）。単位: 分__120分に設定(2時間)
+
+// 中心点管理
 let innerRadius = 1;     // 中心部の黒円の半径
+// let centerColor = "#000000";    // 中心点の色を黒色に設定
+// let centerColor = "#FF0000";    // 中心点の色を赤色に設定
+let centerColor = "#00FF00"; // 中心点の色を緑色に設定
+// let centerColor = "#0000FF";    // 中心点の色を青色に設定
+
+// 扇形管理
+let outerRadius = 10;    // 外側の円の半径
+// let pieColor = "#000000";    // 扇形の色を黒色に設定
+// let pieColor = "#FF0000";    // 扇形の色を赤色に設定
+ let pieColor = "#00FF00";  // 扇形の色を緑色に設定
+//let pieColor = "#0000FF";     // 扇形の色を青色に設定
+let scaleFactor = 0.4;          // 扇形のサイズ調整用スケール
 
 // タイマー管理
 let elapsedSeconds = 0;  // 経過秒数
 let isRunning = false;   // タイマー動作中かどうか
 let timerInterval = null;
 
-// 円グラフの一部（扇形）を描画する関数
+// 文字管理
+let timeUpMessage = "Time !";  // 表示するメッセージ
+let fontSize = 40;             // 使用するフォントのサイズ
+let messageColor = "#000000";  // 文字色を黒色に設定
+// let messageColor = "#FF0000";  // 文字色を赤色に設定
+// let messageColor = "#00FF00";  // 文字色を緑色に設定
+//let messageColor = "#0000FF";   // 文字色を青色に設定
+
+
+
+
+ // 円グラフの一部（扇形）を描画する関数
 function pie(f, a0, a1, invert) {
   if (!invert) return pie(f, a1, a0 + 1, true);
   const t0 = Math.tan(a0 * 2 * Math.PI), t1 = Math.tan(a1 * 2 * Math.PI);
@@ -16,16 +40,19 @@ function pie(f, a0, a1, invert) {
   const x = f.getWidth()/2, y = f.getHeight()/2;
   const poly = [
     x + (i1 & 2 ? -x : x) * (i1 & 1 ? 1 : t1),
-    y + (i1 & 2 ?  y : -y) / (i1 & 1 ? t1 : 1),
+    y + (i1 & 2 ? y : -y) / (i1 & 1 ? t1 : 1),
     x, y,
     x + (i0 & 2 ? -x : x) * (i0 & 1 ? 1 : t0),
-    y + (i0 & 2 ?  y : -y) / (i0 & 1 ? t0 : 1),
+    y + (i0 & 2 ? y : -y) / (i0 & 1 ? t0 : 1),
   ];
   if (i1 - i0 > 4) i1 = i0 + 4;
   for (i0++; i0 <= i1; i0++)
     poly.push((3*i0 & 2) ? f.getWidth() : 0, (i0 & 2) ? f.getHeight() : 0);
-  return f.setColor(0).fillPoly(poly);
+  // 扇形を赤色で塗りつぶす
+  return f.setColor(pieColor).fillPoly(poly);
 }
+
+
 
 // 円グラフを描画する関数
 function drawTimer(g) {
@@ -39,10 +66,14 @@ function drawTimer(g) {
   g.setColor('#FFFFFF').fillCircle(centerX, centerY, outerRadius); // 外円
 
   // 塗りつぶし（円グラフ）
-  pie(g, 0, fraction, true);
+  // pie(g, 0, fraction, true);
 
-  // 中心を黒円で塗りつぶして整形
-  g.setColor('#000000').fillCircle(centerX, centerY, innerRadius);
+  // 扇形を指定したスケールで描画
+  pie(g, 0, fraction, true, scaleFactor);
+
+
+  // 中心点を指定色で塗りつぶして整形
+  g.setColor(centerColor).fillCircle(centerX, centerY, innerRadius);
 }
 
 // タイマーの更新
@@ -60,8 +91,13 @@ function updateTimer(g) {
       // ---- Time Up! と画面表示 ----
       g.clear();
       g.setFontAlign(0, 0);
-      g.setFont("6x8", 2);
-      g.drawString("Time Up!", g.getWidth() / 2, g.getHeight() / 2);
+      // g.setFont("6x8", 2);  // "6x8" フォントをスケール2倍で設定_今は使わない
+
+      // フォントの選択とサイズ設定（例としてベクターフォントを使用）
+      g.setFont("Vector", fontSize);
+      g.setColor(messageColor);  // 文字色を指定
+      g.drawString(timeUpMessage, g.getWidth() / 2, g.getHeight() / 2);
+
 
       return; // ここで処理を中断
     }
