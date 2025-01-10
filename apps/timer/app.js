@@ -1,5 +1,5 @@
 // タイマー設定
-let totalTime = 1;       // タイマーの設定（1周にかかる時間）。単位: 分
+let totalTime = 120;       // タイマーの設定（1周にかかる時間）。単位: 分__120分に設定（2時間）
 let outerRadius = 10;    // 外側の円の半径
 let innerRadius = 1;     // 中心部の黒円の半径
 
