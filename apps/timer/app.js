@@ -2,32 +2,56 @@
 let totalTime = 120;       // タイマーの設定（1周にかかる時間）。単位: 分__120分に設定(2時間)
 
 // 中心点管理
-let innerRadius = 1;     // 中心部の黒円の半径
-// let centerColor = "#000000";    // 中心点の色を黒色に設定
-let centerColor = "#FF0000";    // 中心点の色を赤色に設定
-// let centerColor = "#00FF00"; // 中心点の色を緑色に設定
-// let centerColor = "#0000FF";    // 中心点の色を青色に設定
+let innerRadius = 1;     // 中心部の円の半径
+// let centerColor = "#000000";   // 中心点の色を黒色に設定
+let centerColor = "#FF0000";   // 中心点の色を赤色に設定
+// let centerColor = "#ff8000";   // 中心点の色をオレンジに設定
+// let centerColor = "#00FF00";   // 中心点の色を緑色に設定
+// let centerColor = "#0000FF";   // 中心点の色を青色に設定
+
 
 // 扇形管理
 let outerRadius = 10;    // 外側の円の半径
 // let pieColor = "#000000";    // 扇形の色を黒色に設定
-let pieColor = "#FF0000";    // 扇形の色を赤色に設定
-// let pieColor = "#00FF00";  // 扇形の色を緑色に設定
-//let pieColor = "#0000FF";     // 扇形の色を青色に設定
-let scaleFactor = 0.4;          // 扇形のサイズ調整用スケール
+// let pieColor = "#708090";    // 扇形の色をスレートグレーに設定
+// let pieColor = "#49413F";    // 扇形の色をディープトープに設定
+// let pieColor = "#333333";    // 扇形の色を濃い灰色に設定
+// let pieColor = "#FF0000";    // 扇形の色を赤色に設定
+// let pieColor = "#8B0000";    // 扇形の色をダークレッドに設定
+// let pieColor = "#800020";    // 扇形の色をバーガンディに設定
+// let pieColor = "#65000B";    // 扇形の色をローズウッドに設定
+// let pieColor = "#ff8000";    // 扇形の色をオレンジに設定_少消費電力_2位
+// let pieColor = "#B8860B";    // 扇形の色をダークゴールドに設定_少消費電力_5位
+// let pieColor = "#B37800";    // 扇形の色をダークアンバーに設定_少消費電力_3位
+// let pieColor = "#C45000";    // 扇形の色をダークアンバーに赤色を追加した設定
+// let pieColor = "#C93C00";    // 扇形の色をダークアンバーさらに赤色を追加した設定
+// let pieColor = "#00FF00";    // 扇形の色を緑色に設定_少消費電力_1位
+// let pieColor = "#008080";    // 扇形の色をティールグリーンに設定
+// let pieColor = "#00688B";    // 扇形の色をディープシアンに設定
+// let pieColor = "#013220";    // 扇形の色をフォレストグリーンに設定
+// let pieColor = "#004D40";    // 扇形の色をフォレストティールに設定
+// let pieColor = "#556B2F";    // 扇形の色をダークオリーブグリーンに設定
+// let pieColor = "#0000FF";    // 扇形の色を青色に設定
+// let pieColor = "#191970";    // 扇形の色をミッドナイトブルーに設定
+// let pieColor = "#4682B4";    // 扇形の色をスティールブルーに設定_少消費電力_4位
+// let pieColor = "#001F3F";    // 扇形の色をネイビーブルーに設定
+// let pieColor = "#00008B";    // 扇形の色をダークブルーに設定
+let pieColor = "#00FF00";    // 扇形の色をに設定
+
 
 // タイマー管理
 let elapsedSeconds = 0;  // 経過秒数
 let isRunning = false;   // タイマー動作中かどうか
 let timerInterval = null;
 
+
 // 文字管理
 let timeUpMessage = "Time !";  // 表示するメッセージ
 let fontSize = 40;             // 使用するフォントのサイズ
-let messageColor = "#000000";  // 文字色を黒色に設定
-// let messageColor = "#FF0000";  // 文字色を赤色に設定
+// let messageColor = "#000000";  // 文字色を黒色に設定
+let messageColor = "#FF0000";  // 文字色を赤色に設定
 // let messageColor = "#00FF00";  // 文字色を緑色に設定
-//let messageColor = "#0000FF";   // 文字色を青色に設定
+// let messageColor = "#0000FF";  // 文字色を青色に設定
 
 
 
@@ -69,7 +93,7 @@ function drawTimer(g) {
   // pie(g, 0, fraction, true);
 
   // 扇形を指定したスケールで描画
-  pie(g, 0, fraction, true, scaleFactor);
+  pie(g, 0, fraction, true);
 
 
   // 中心点を指定色で塗りつぶして整形
@@ -92,7 +116,7 @@ function updateTimer(g) {
       g.clear();
       g.setFontAlign(0, 0);
       // g.setFont("6x8", 2);  // "6x8" フォントをスケール2倍で設定_今は使わない
-
+      
       // フォントの選択とサイズ設定（例としてベクターフォントを使用）
       g.setFont("Vector", fontSize);
       g.setColor(messageColor);  // 文字色を指定
