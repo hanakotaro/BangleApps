@@ -36,7 +36,7 @@ let outerRadius = 10;    // 外側の円の半径
 // let pieColor = "#4682B4";    // 扇形の色をスティールブルーに設定_少消費電力_4位
 // let pieColor = "#001F3F";    // 扇形の色をネイビーブルーに設定
 // let pieColor = "#00008B";    // 扇形の色をダークブルーに設定
-let pieColor = "#00FF00";    // 扇形の色をに設定
+let pieColor = "#FF0000";    // 扇形の色をに設定
 
 
 // タイマー管理
