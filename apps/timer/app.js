@@ -46,7 +46,7 @@ let timerInterval = null;
 
 
 // 文字管理
-let timeUpMessage = "Time !";  // 表示するメッセージ
+let timeUpMessage = "Surface!";  // 表示するメッセージ
 let fontSize = 40;             // 使用するフォントのサイズ
 // let messageColor = "#000000";  // 文字色を黒色に設定
 let messageColor = "#FF0000";  // 文字色を赤色に設定
