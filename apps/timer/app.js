@@ -1,6 +1,7 @@
 // タイマー設定
 let totalTime = 120;       // タイマーの設定（1周にかかる時間）。単位: 分__120分に設定(2時間)
 
+
 // 中心点管理
 let innerRadius = 1;     // 中心部の円の半径
 // let centerColor = "#000000";   // 中心点の色を黒色に設定
@@ -46,10 +47,11 @@ let timerInterval = null;
 
 
 // 文字管理
-let timeUpMessage = "Surface!";  // 表示するメッセージ
-let fontSize = 40;             // 使用するフォントのサイズ
+let timeUpMessage = "Surface!\n Surface!\n  Surface!";  // 表示するメッセージ
+let fontSize = 35;             // 使用するフォントのサイズ
 // let messageColor = "#000000";  // 文字色を黒色に設定
-let messageColor = "#FF0000";  // 文字色を赤色に設定
+// let messageColor = "#FF0000";  // 文字色を赤色に設定
+let messageColor = "#800020";  // 文字色をバーガンディに設定
 // let messageColor = "#00FF00";  // 文字色を緑色に設定
 // let messageColor = "#0000FF";  // 文字色を青色に設定
 
